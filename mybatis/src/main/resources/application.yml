@@ -1,0 +1,61 @@
+server:
+  servlet:
+    context-path: /web
+
+spring:
+  datasource:
+    druid:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test
+      username: root
+      password: 12345678
+      #配置初始化大小
+      initial-size: 5
+      #最小空闲连接
+      min-idle: 5
+      #最大连接数量
+      max-active: 20
+      #配置获取连接等待超时的时间
+      max-wait: 30000
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      #配置一个连接在池中最小、最大生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      max-evictable-idle-time-millis: 900000
+      #是否自动回收超时连接
+#      removeAbandoned: true
+      #指定连接应该被废弃的时间 秒
+#      removeAbandonedTimeout: 1800
+      #测试sql
+      validation-query: SELECT '1' FROM DUAL
+      #建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
+      test-while-idle: true
+      #申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-borrow: false
+      #归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      test-on-return: false
+      #通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      #connectionProperties: config.decrypt=true;config.decrypt.key=${public-key};druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+      pool-prepared-statements: true
+      #要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+      max-pool-prepared-statement-per-connection-size: 20
+      #属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有： 监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall
+      filters: stat,wall
+      aop-patterns: com.springboot.servie.*
+
+      web-stat-filter:
+        enabled: true
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+
+      stat-view-servlet:
+        enabled: true
+        reset-enable: false
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+
+      filter:
+        stat:
+          log-slow-sql: true
