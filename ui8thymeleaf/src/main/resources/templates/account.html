@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>account</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+</head>
+<body>
+    <table>
+        <tr>
+<!--            <th>no</th>-->
+            <th>name</th>
+            <th>role</th>
+            <th>team</th>
+            <th>gender</th>
+            <th>tel</th>
+        </tr>
+        <tr th:each="list : ${account}">
+<!--            <td th:text="${stat.count}"></td>-->
+            <td th:text="${list.name}"></td>
+            <td th:text="${list.role}"></td>
+            <td th:text="${list.team}"></td>
+            <td th:text="${list.gender}"></td>
+            <td th:text="${list.tel}"></td>
+        </tr>
+    </table>
+</body>
+</html>
