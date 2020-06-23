@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <p>Hello [[${user.userName}]]</p>
+    <h3>Authorization Test Link</h3>
+    <div>
+        <a th:href="@{/user/info}">Get User Detail</a>
+        <a th:href="@{/user/add}">Add a User</a>
+        <a th:href="@{/user/delete}">Delete a User</a>
+        <a th:href="@{/user/update}">Update a User</a>
+    </div>
+    <a th:href="@{/logout}">Logout</a>
+</body>
+</html>
