@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController {
-    @RequiresPermissions("user")
+    @RequiresPermissions("user:user")
     @RequestMapping("info")
     public String userInfo(Model model) {
         model.addAttribute("value", "Get User Info");

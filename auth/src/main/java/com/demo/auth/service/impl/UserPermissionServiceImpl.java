@@ -15,6 +15,6 @@ public class UserPermissionServiceImpl implements UserPermissionService {
 
     @Override
     public List<Permission> findPermissionsByUserName(String userName) {
-        return this.userPermissionMapper.findPermissionsByUserName(userName);
+        return userPermissionMapper.findPermissionsByUserName(userName);
     }
 }

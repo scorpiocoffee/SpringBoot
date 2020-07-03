@@ -15,6 +15,6 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public List<Role> findRolesByUserName(String userName) {
-        return this.userRoleMapper.findRolesByUserName(userName);
+        return userRoleMapper.findRolesByUserName(userName);
     }
 }

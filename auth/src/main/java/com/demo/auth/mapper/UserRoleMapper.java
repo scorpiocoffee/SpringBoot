@@ -13,11 +13,11 @@ import java.util.List;
 @Repository
 public interface UserRoleMapper {
     @Select("select r.name, r.memo from t_role r " +
-            "left join t_user_role ur on(r.id=ur.rid)" +
-            "left join t_user u on(u.id=ur.user_id)" +
+            "left join t_user_role ur on(r.id=ur.rid) " +
+            "left join t_user u on(u.id=ur.user_id) " +
             "where u.username=#{userName}")
-    @Results(id = "user_role", value = {
-        @Result(property = "userName", column = "name", javaType = String.class),
+    @Results(id = "role", value = {
+        @Result(property = "name", column = "name", javaType = String.class),
         @Result(property = "memo", column = "memo", javaType = String.class)
     })
     List<Role> findRolesByUserName(String userName);
